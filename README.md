@@ -123,13 +123,59 @@ export default Todo;
 
 
 ## ステップ4: Hookを使ってブラウザ上でTodoを追加できるようにする
+`page/index.js`を以下のように編集する。
 
+```jsx
+import { useState } from 'react';
+
+const Todo = () => {
+  const [lists, setLists] = useState([]);  // リストとして追加されるもの
+  const [todo, setTodo] = useState('');  // フォームの入力
+
+  return (
+    <div>
+      <input value={todo} onChange={(e) => setTodo(e.target.value)} />
+      <button onClick={() => setLists([...lists, todo]), setTodo('')}>追加</button>
+      <ul>
+        {lists.map(n => (
+          <li>{ n }</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Todo;
+```
+
+処理の内容を分かりやすくするために変数名を`todos -> lists`に、map関数内を`todo -> n`に変更した。
+ブラウザ上のフォームに入力したTodoが下に追加されていけばOK
 
 
 ### 🤔何してるの？
+1行目`import { useState } from 'react'`で`useState`Hookをインポートしている。
+Hookは`const [value, setValue] = useState(initValue)`の形で書けば使える。便利。
+listsはフォーム下に表示されるTodo一覧を表示するために使っている。
+todoはフォームに入力した文字をフォーム内に反映するために使っている。
+`<input value={todo} onChange={(e) => setTodo(e.target.value)} />`でフォームに入力された値(`value={todo}`)を取得し、フォームに変更があったらそれをフォームに反映(`onChange={(e) => setTodo(e.target.value)}`)している。
+追加ボタンが押されるとリストの最後に、フォームに入力されたTodoを追加(`onClick={() => setLists([...lists, todo])}`)し、フォームをリセット(`setTodo('')`)している。
 
 
 ### 🥺Hookってなに？ぴえんぴえん
+
+> フック (hook) は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。
+> [Hooks React Docs](https://ja.reactjs.org/docs/hooks-overview.html)
+
+これまでstate(状態)を管理するようなものを実装するにはクラスを使わなければならなかった。
+しかし、どうやらクラスを使うと人間もコンピュータも混乱するらしい。
+そこで1つの機能を1つの関数として1つの場所に記述することで混乱を減らせるだろうと関数に状態を持てるようにしたのがHookらしい。
+Reactからクラスが削除されることはないらしいので、クラスを使い続けていても問題はないらしい。
+クラスでしか実装できないものもあるらしい？
+Hookへの移行を急ぐ必要はないけれど少しづつ導入していけばいいらしい？
+初心者なのでよくわからない……
+
+## ステップ5: 削除ボタンを実装する
+
 
 
 

@@ -1,13 +1,18 @@
+import { useState } from 'react';
+
 const Todo = () => {
-  const todos = ['todo1', 'todo2', 'todo3'];
+  const [lists, setLists] = useState([]);  // リストとして追加されるもの
+  const [todo, setTodo] = useState('');  // フォームの入力
 
   return (
     <div>
-      <input />
-      <button>追加</button>
-      {todos.map(todo => (
-        <h1>{ todo }</h1>
-      ))}
+      <input value={todo} onChange={(e) => setTodo(e.target.value)} />
+      <button onClick={() => setLists([...lists, todo], setTodo(''))}>追加</button>
+      <ul>
+        {lists.map(n => (
+          <li>{ n }</li>
+        ))}
+      </ul>
     </div>
   );
 }
