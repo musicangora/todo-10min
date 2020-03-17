@@ -8,6 +8,15 @@
 
 
 
+## お気持ち
+
+React.jsをちょっと勉強したのでお約束のTodoアプリを作りつつ、これまで学んだ内容をまとめようと思った。
+
+React.jsで作っても良かったけど、「更新がまあまああって」「ユーザにローディングを見せたくない」のでサーバ側でレンダリングしてくれるNext.jsが良いのかな〜〜〜という感じで採用した。
+
+いまいち何を作るときに何を使えばいいかわかっていない。[このサイト](https://watablogtravel.com/cra-create-react-app-next-js-gatsby%E3%80%90-%E3%81%A9%E3%81%86%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91%E3%82%8B%E3%81%AE%E3%81%8B%EF%BC%9F%E3%80%91/#Gatsby-2)に書いてあることを信じています。
+
+
 ## ステップ0: セットアップ
 
 create-next-appを使ってNext.jsをセットアップする。プロジェクトを新しく作成するには次のコマンドを実行する。
@@ -155,10 +164,12 @@ export default Todo;
 ### 🤔何してるの？
 1行目`import { useState } from 'react'`で`useState`Hookをインポートしている。
 Hookは`const [value, setValue] = useState(initValue)`の形で書けば使える。便利。
-listsはフォーム下に表示されるTodo一覧を表示するために使っている。
-todoはフォームに入力した文字をフォーム内に反映するために使っている。
+
 `<input value={todo} onChange={(e) => setTodo(e.target.value)} />`でフォームに入力された値(`value={todo}`)を取得し、フォームに変更があったらそれをフォームに反映(`onChange={(e) => setTodo(e.target.value)}`)している。
+
+
 追加ボタンが押されるとリストの最後に、フォームに入力されたTodoを追加(`onClick={() => setLists([...lists, todo])}`)し、フォームをリセット(`setTodo('')`)している。
+
 
 
 ### 🥺Hookってなに？ぴえんぴえん
@@ -167,8 +178,14 @@ todoはフォームに入力した文字をフォーム内に反映するため�
 > [Hooks React Docs](https://ja.reactjs.org/docs/hooks-overview.html)
 
 これまでstate(状態)を管理するようなものを実装するにはクラスを使わなければならなかった。
+
+
 しかし、どうやらクラスを使うと人間もコンピュータも混乱するらしい。
+
+
 そこで1つの機能を1つの関数として1つの場所に記述することで混乱を減らせるだろうと関数に状態を持てるようにしたのがHookらしい。
+
+
 Reactからクラスが削除されることはないらしいので、クラスを使い続けていても問題はないらしい。
 クラスでしか実装できないものもあるらしい？
 Hookへの移行を急ぐ必要はないけれど少しづつ導入していけばいいらしい？
