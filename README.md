@@ -1,18 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+# 10分で作る（大嘘）Todoアプリ
 
-## Getting Started
+これは[`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app)で作られた[Next.js](https://nextjs.org/)のプロジェクトです。
 
-First, run the development server:
+## 目次
+
+
+
+## ステップ0: セットアップ
+create-next-appを使ってNext.jsをセットアップする。プロジェクトを新しく作成するには次のコマンドを実行する。
 
 ```bash
-npm run dev
-# or
-yarn dev
+$ npm init next-app 
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+指示に従って入力していくと必要なものがすべてインストールされる。インストールが完了したら以下のコマンドでサーバを起動する。
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash
+$ npm run dev 
+```
+
+[http://localhost:3000](http://localhost:3000)にアクセスしてページが表示されることを確認する。
+
+## ステップ1: コードの書き方を確認する
+とりあえずHello World!してみたいので、`page/index.js`を開いて書いてあるコードをすべて消す。
+以下のコードを入力する。
+
+```js
+export default () => (
+    <h1>Hello World!</h1>
+)
+```
+
+ブラウザで[http://localhost:3000](http://localhost:3000)にアクセスしてみる。
+Hello World!できてれば大丈夫。
+
+### 🤔何してるの？
+`export default ○○`で○○をコンポーネントとして出力している。
+今回はアロー関数を使って`<h1>`要素を返す関数を出力させている。
+
+## ステップ2: コード内に記述したTodoを表示させる
+`page/index.js`を以下のように編集する。
+
+``` jsx
+const Todo = () => {
+  const todos = ['todo1', 'todo2', 'todo3'];
+
+  return (
+    <div>
+      {todos.map(todo => (
+        <h1>{ todo }</h1>
+      ))}
+    </div>
+  );
+}
+
+export default Todo;
+```
+
+ブラウザで[http://localhost:3000](http://localhost:3000)にアクセスしてみる。
+
+```
+todo1
+todo2
+todo3
+```
+が表示されていればOK。
+
+### 🤔何してるの？
+Todoを格納するtodos配列を作って、map関数で配列の中身を展開し`<h1>`要素で表示している。JSとhtmlが混在していて初見だと気持ち悪いかもしれないが、JSとhtmlを組み合わせて記述できるJSXという記法を使うので慣れるしかない。
+
+```jsx
+<htmlタグ>{ JS <htmlタグ>{ JS }</htmlタグ>}</htmlタグ>
+```
+
+こんな感じで使う。波括弧の中はJSが書いてある認識でいいはず。
+
+## ステップ3: ブラウザ上でTodoを追加できるようにする
+
+
 
 ## Learn More
 
