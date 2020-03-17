@@ -197,17 +197,40 @@ Hookへの移行を急ぐ必要はないけれど少しづつ導入していけ�
 
 
 
-## Learn More
+## 感想
+まとめながら作ったので恐ろしく時間がかかった。疲れた……。
 
-To learn more about Next.js, take a look at the following resources:
+
+
+## もっと知りたい？
+
+Next.jsについてもっと知りたいなら以下のサイトを見てみるといいかも: 
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on ZEIT Now
+## ZEIT Nowでデプロイした
+
+```bash
+$ now
+```
+でデプロイが終わる神ツールで[デプロイしました]()
 
 The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## 参考
+- [Todo app in 10 minute using nextjs](https://youtu.be/yglkCznd7rg)
+- [初めてのReact「入門編」導入から基本まで〜TODOアプリを作ってを学ぼう！](https://webkikaku.co.jp/homepage/blog/hpseisaku/javascript/react-start/)
+- [CRA (Create React App), Next.JS, Gatsby【 どう使い分けるのか？】](https://watablogtravel.com/cra-create-react-app-next-js-gatsby%E3%80%90-%E3%81%A9%E3%81%86%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91%E3%82%8B%E3%81%AE%E3%81%8B%EF%BC%9F%E3%80%91/#Gatsby-2)
+- [フックの導入](https://ja.reactjs.org/docs/hooks-intro.html#motivation)
+- [最近Reactを始めた人向けのReact Hooks入門](https://sbfl.net/blog/2019/11/12/react-hooks-introduction/)
+
+
+## 追記
+全く同じ内容のQiitaが先に存在していた
+[NEXT.jsとReact Hooksを使ってTodoアプリを10分で作る](https://qiita.com/hiraike32/items/71b14755f56208a8a133)
