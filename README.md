@@ -247,15 +247,41 @@ Reactでは個別のIDであるkeyを使って、VirtualDOMから実際のDOMに
 ということで、`page/index.js`を以下のように編集する。
 
 ```jsx
-// code
+import { useState } from 'react';
+
+const Todo = () => {
+  const [lists, setLists] = useState([]);  // リストとして追加されるもの
+  const [todo, setTodo] = useState('');  // フォームの入力
+
+  const removeTodo = (todo) => {
+    setLists(lists.filter(t => t !== todo));
+  };
+
+  return (
+    <div>
+      <input value={todo} onChange={(e) => setTodo(e.target.value)} />
+      <button onClick={() => setLists([...lists, todo], setTodo(''))}>追加</button>
+      <ul>
+        {lists.map((n, index) => (
+          <li key={ index }>
+            { n }
+            <button onClick={() => removeTodo(n)}>削除</button>
+          </li>
+          ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Todo;
 ```
 
 ### 🤔何してるの？
 
+`<li>`に`key={ index }`を追加してkeyを設定してあげた。
 
 
-
-## ステップ7: 処理を見直してコードを整える
+## ステップ7: 処理を見直す
 
 ステップ6まででTodoアプリとして機能しwarningも消えたが、このままではちょっと困った仕様がある。
 
@@ -268,10 +294,50 @@ Todoリストから削除する際に`filter`を使って消したいTodoと同�
 ということで、`page/index.js`を以下のように編集する。
 
 ```jsx
-// code
+import { useState } from 'react';
+
+const Todo = () => {
+  const [lists, setLists] = useState([]);  // リストとして追加されるもの
+  const [todo, setTodo] = useState('');  // フォームの入力
+
+  const removeTodo = (index) => {
+    // sliceを使うver.
+    // const newlists = [...lists.slice(0, index), ...lists.slice(index+1)];
+
+    // filterを使うver.
+    const newlists = lists.filter((t, tindex) => index !== tindex);
+    setLists(newlists);
+  };
+
+  return (
+    <div>
+      <input value={todo} onChange={(e) => setTodo(e.target.value)} />
+      <button onClick={() => todo===''?alert('入力してください'):setLists([...lists, todo], setTodo(''))}>追加</button>
+      <ul>
+        {lists.map((n, index) => (
+          <li key={ index }>
+            { n }
+            <button onClick={() => removeTodo(index)}>削除</button>
+          </li>
+          ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Todo;
 ```
 
 ### 🤔何してるの？
+
+ステップ6で追加したkeyであるindexは固有のものなので、各Todoを一意に識別できる。これを使って削除してあげる。
+
+これまでと同様に`filter`を使ってkeyが異なるものだけを取り出して新しい配列に格納して、それをもとにリストを更新する。keyが増えたので`filter`に引数が増えてることに注意。
+
+コメントアウトしてるが`slice`で配列のなかからTodoを切り取ってあげてもいい。
+
+また、追加ボタンを`onClick`したときに三項演算子を使って空白なら`alert`を出す処理を追加している。
+
 
 
 ## ステップ8: CSSを追加して見た目を整える
@@ -283,6 +349,21 @@ Next.jsではjsファイルの中にCSSを記述することができるので�
 ```jsx
 // code
 ```
+
+
+## オプション：コードの可読性を上げる
+
+10分で適当に作るなら正直ステップ5まででいい。
+
+ここまできたらちゃんとしたいので、ちゃんとする。
+
+```jsx
+// code
+```
+
+### 🤔何してるの？
+
+
 
 
 ## ㊗️完成！！！！！🎉
