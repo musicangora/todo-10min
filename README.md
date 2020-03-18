@@ -192,9 +192,102 @@ Hookへの移行を急ぐ必要はないけれど少しづつ導入していけ�
 初心者なのでよくわからない……
 
 ## ステップ5: 削除ボタンを実装する
+`page/index.js`を以下のように編集する。
+
+```jsx
+import { useState } from 'react';
+
+const Todo = () => {
+  const [lists, setLists] = useState([]);  // リストとして追加されるもの
+  const [todo, setTodo] = useState('');  // フォームの入力
+
+  const removeTodo = (todo) => {
+    setLists(lists.filter(t => t !== todo));
+  };
+
+  return (
+    <div>
+      <input value={todo} onChange={(e) => setTodo(e.target.value)} />
+      <button onClick={() => setLists([...lists, todo], setTodo(''))}>追加</button>
+      <ul>
+        {lists.map(n => (
+          <li>
+            { n }
+            <button onClick={() => removeTodo(n)}>削除</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Todo;
+```
+
+ブラウザ上で追加したTodoの横に削除ボタンが表示されて、押すとTodoが消えればOK
+
+このステップまでで一応Todoアプリとして機能するものが完成する
+
+
+### 🤔何してるの？
+`removeTodo`でTodoを削除する処理を記述している。
+
+`lists.filter(t => t !== todo)`でTodoリストの中から、削除したいTodoの文字列と異なるものを取り出してそれらを`setLists`でTodoリストに追加し直している。
+
+## ステップ6: warningを消す
+
+ステップ5の状態でブラウザのconsole.logを見ると__warning__が出ている。
+
+これは「各Todoに個別のIDがついてないよ〜〜」という旨のwarningである。別に無視していても動きはするが、処理が最適になっていない。
+
+Reactでは個別のIDであるkeyを使って、VirtualDOMから実際のDOMに反映するときの更新を最小限にしているらしい。keyがあることによって、keyを頼りに書き換わっているものだけを取り出すことができる。
+
+どうやらkeyはつけたほうがいいらしいので、keyを追加する。
+
+ということで、`page/index.js`を以下のように編集する。
+
+```jsx
+// code
+```
+
+### 🤔何してるの？
 
 
 
+
+## ステップ7: 処理を見直してコードを整える
+
+ステップ6まででTodoアプリとして機能しwarningも消えたが、このままではちょっと困った仕様がある。
+
+Todoリストから削除する際に`filter`を使って消したいTodoと同じ文字列のものを削除している。したがって、全く同じTodoがリストに複数存在する場合、どれかひとつでも削除すると他のTodoもすべて消えてしまう。
+
+これを解消するために削除の処理を見直す。
+
+さらに、このままでは空のTodoも登録できてしまうので空のTodoは登録できないように警告を出す。
+
+ということで、`page/index.js`を以下のように編集する。
+
+```jsx
+// code
+```
+
+### 🤔何してるの？
+
+
+## ステップ8: CSSを追加して見た目を整える
+
+これで機能も仕様もいい感じになったので、最後にCSSで見た目を整える。
+
+Next.jsではjsファイルの中にCSSを記述することができるので、`page/index.js`にCSSを追加する。
+
+```jsx
+// code
+```
+
+
+## ㊗️完成！！！！！🎉
+
+完成した！！！おめでとう！！！！
 
 
 ## 感想
@@ -229,8 +322,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - [CRA (Create React App), Next.JS, Gatsby【 どう使い分けるのか？】](https://watablogtravel.com/cra-create-react-app-next-js-gatsby%E3%80%90-%E3%81%A9%E3%81%86%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91%E3%82%8B%E3%81%AE%E3%81%8B%EF%BC%9F%E3%80%91/#Gatsby-2)
 - [フックの導入](https://ja.reactjs.org/docs/hooks-intro.html#motivation)
 - [最近Reactを始めた人向けのReact Hooks入門](https://sbfl.net/blog/2019/11/12/react-hooks-introduction/)
+- [React.jsの地味だけど重要なkeyについて](https://qiita.com/koba04/items/a4d23245d246c53cd49d)
 
 
 ## 追記
-全く同じ内容のQiitaが先に存在していた
+よくよく調べたら、全く同じ内容のQiitaが先に存在していたので、ありがたく参考にさせてもらった
+
 [NEXT.jsとReact Hooksを使ってTodoアプリを10分で作る](https://qiita.com/hiraike32/items/71b14755f56208a8a133)
