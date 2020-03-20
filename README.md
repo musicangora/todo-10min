@@ -484,7 +484,7 @@ You can check out [the Next.js GitHub repository](https://github.com/zeit/next.j
 ```bash
 $ now
 ```
-でデプロイが終わる神ツールで[デプロイしました]()
+でデプロイが終わる神ツールで[デプロイしました](https://todo-10min-k9d8exxbt.now.sh/)
 
 The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
