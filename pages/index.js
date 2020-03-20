@@ -38,6 +38,7 @@ const Todo = () => {
           font-size: 16px;
           letter-spacing: 0.05em;
           line-hight: 1.2;
+          color: #fff;
         }
 
         h1 {
@@ -63,24 +64,29 @@ const Todo = () => {
 
         .add-button {
           width: 100px;
-          background-color: #e00;
+          font-weight: 700;
+          background-color: #e53935;
           margin-left: 20px;
           border-radius: 5px;
           color: #eee;
           font-size: 16px;
           cursor: pointer;
           outline: none;
+          border-style: none;
         }
 
         .delete-button {
           width: 60px;
-          background-color: #0d0;
+          background-color: #eee;
           margin-left: 10px;
+          padding: 6px 10px;
           border-radius: 5px;
-          color: #eee;
-          font-size: 14px;
+          color: #222;
+          font-size: 12px;
+          font-weight: 700;
           cursor: pointer;
           outline: none;
+          border-style: none;
         }
 
         ul {
