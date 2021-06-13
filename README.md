@@ -1,4 +1,4 @@
-# 10分で作る（大嘘）Todoアプリ
+# 10分で作りたい……Todoアプリ
 
 これは[`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app)で作られた[Next.js](https://nextjs.org/)のプロジェクトです。
 
@@ -8,7 +8,7 @@
 
 
 
-## お気持ち
+## はじめに
 
 React.jsをちょっと勉強したのでお約束のTodoアプリを作りつつ、これまで学んだ内容をまとめようと思った。
 
@@ -466,7 +466,6 @@ export default Todo;
 
 ## 感想
 まとめながら作ったので恐ろしく時間がかかった。疲れた……。
-CSS何もわからん
 
 
 
